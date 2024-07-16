@@ -31,33 +31,36 @@ class FactorController extends Controller
             ->with('success', 'Factor created successfully.');
     }
 
-    public function show(Factor $factor)
+    public function show($id)
     {
+        $factor = Factor::findOrFail($id);
         return view('factor.show', compact('factor'));
     }
 
-    public function edit(Factor $factor)
+    public function edit($id)
     {
+        $factor = Factor::findOrFail($id);
         return view('factor.edit', compact('factor'));
     }
 
-    public function update(Request $request, Factor $factor)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'nombre_factor' => 'required|string|max:255',
             'codigo_factor' => 'required|string|max:255',
         ]);
 
+        $factor = Factor::findOrFail($id);
         $factor->update($request->all());
 
         return redirect()->route('factores.index')
             ->with('success', 'Factor updated successfully.');
     }
 
-    public function destroy(Factor $factor)
+    public function destroy($id)
     {
+        $factor = Factor::findOrFail($id);
         $factor->delete();
-
         return redirect()->route('factores.index')
             ->with('success', 'Factor deleted successfully.');
     }

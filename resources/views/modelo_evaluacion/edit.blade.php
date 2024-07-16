@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <h1>Editar Modelo de Evaluación</h1>
-    <form action="{{ route('modelos_evaluacion.update', $modeloEvaluacion->id_modelo) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">

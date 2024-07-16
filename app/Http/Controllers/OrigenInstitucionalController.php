@@ -32,8 +32,9 @@ class OrigenInstitucionalController extends Controller
                          ->with('success', 'Origen institucional creado con éxito.');
     }
 
-    public function show(OrigenInstitucional $origenInstitucional)
+    public function show($id)
     {
+        $origenInstitucional = OrigenInstitucional::findOrFail($id);
         return view('origen_institucional.show', compact('origenInstitucional'));
     }
 
@@ -42,7 +43,7 @@ class OrigenInstitucionalController extends Controller
         return view('origen_institucional.edit', compact('origenInstitucional'));
     }
 
-    public function update(Request $request, OrigenInstitucional $origenInstitucional)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'nombre_origen' => 'required|string|max:255',
@@ -50,14 +51,16 @@ class OrigenInstitucionalController extends Controller
             'correo_responsable' => 'required|string|max:255|email',
         ]);
 
+        $origenInstitucional = OrigenInstitucional::findOrFail($id);
         $origenInstitucional->update($request->all());
 
         return redirect()->route('origenes.index')
                          ->with('success', 'Origen institucional actualizado con éxito.');
     }
 
-    public function destroy(OrigenInstitucional $origenInstitucional)
+    public function destroy($id)
     {
+        $origenInstitucional = OrigenInstitucional::findOrFail($id);
         $origenInstitucional->delete();
 
         return redirect()->route('origenes.index')

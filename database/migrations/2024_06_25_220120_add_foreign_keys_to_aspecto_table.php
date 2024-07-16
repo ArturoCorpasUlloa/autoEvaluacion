@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('aspectos', function (Blueprint $table) {
-            $table->foreign('id_caracteristica')->references('id_caracteristica')->on('caracteristicas')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign('id_caracteristica')->references('id_caracteristica')->on('caracteristicas')->onDelete('cascade');
         });
     }
 

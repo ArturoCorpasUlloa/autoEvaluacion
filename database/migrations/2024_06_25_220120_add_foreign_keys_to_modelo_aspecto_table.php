@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('modelos_aspectos', function (Blueprint $table) {
             $table->foreign('id_modelo')->references('id_modelo')->on('modelos_evaluacion')->onUpdate('restrict')->onDelete('restrict');
-            $table->foreign('id_aspecto')->references('id_aspecto')->on('aspectos')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign('id_aspecto')->references('id_aspecto')->on('aspectos')->onDelete('cascade');
         });
     }
 

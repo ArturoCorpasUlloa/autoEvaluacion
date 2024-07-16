@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('evidencias', function (Blueprint $table) {
             $table->foreign('id_aspecto')->references('id_aspecto')->on('aspectos')->onUpdate('restrict')->onDelete('restrict');
             $table->foreign('id_usuario')->references('id')->on('users')->onUpdate('restrict')->onDelete('restrict');
-            $table->foreign('id_origen')->references('id_origen')->on('origenes_institucionales')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign('id_origen')->references('id_origen')->on('origenes_institucionales')->onDelete('cascade');
         });
     }
 

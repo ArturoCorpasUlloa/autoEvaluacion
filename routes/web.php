@@ -21,7 +21,7 @@ Route::resource('programas', ProgramaController::class);
 Route::resource('factores', FactorController::class);
 Route::resource('caracteristicas', CaracteristicaController::class);
 Route::resource('aspectos', AspectoController::class);
-Route::resource('modelos_evaluacion', ModeloEvaluacionController::class)->parameters(['modelos_evaluacion' => 'modeloEvaluacion']);
+Route::resource('modelos_evaluacion', ModeloEvaluacionController::class);
 Route::resource('modelos_aspectos', ModeloAspectoController::class);
 Route::resource('evidencias', EvidenciaController::class);
 Route::resource('docentes', DocenteController::class);

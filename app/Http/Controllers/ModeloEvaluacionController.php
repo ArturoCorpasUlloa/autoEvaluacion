@@ -34,8 +34,9 @@ class ModeloEvaluacionController extends Controller
                          ->with('success', 'Modelo de evaluación creado con éxito.');
     }
 
-    public function show(ModeloEvaluacion $modeloEvaluacion)
+    public function show($id)
     {
+        $modeloEvaluacion = ModeloEvaluacion::findOrFail($id);
         $modeloEvaluacion = $modeloEvaluacion->with('programa')->find($modeloEvaluacion->id_modelo);
         return view('modelo_evaluacion.show', compact('modeloEvaluacion'));
     }
@@ -46,7 +47,7 @@ class ModeloEvaluacionController extends Controller
         return view('modelo_evaluacion.edit', compact('modeloEvaluacion', 'programas'));
     }
 
-    public function update(Request $request, ModeloEvaluacion $modeloEvaluacion)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'id_programa' => 'required|integer|exists:programas,id_programa',
@@ -54,14 +55,16 @@ class ModeloEvaluacionController extends Controller
             'fecha_fin' => 'required|date',
         ]);
 
+        $modeloEvaluacion = ModeloEvaluacion::findOrFail($id);
         $modeloEvaluacion->update($request->all());
 
         return redirect()->route('modelos_evaluacion.index')
                          ->with('success', 'Modelo de evaluación actualizado con éxito.');
     }
 
-    public function destroy(ModeloEvaluacion $modeloEvaluacion)
+    public function destroy($id)
     {
+        $modeloEvaluacion = ModeloEvaluacion::findOrFail($id);
         $modeloEvaluacion->delete();
 
         return redirect()->route('modelos_evaluacion.index')
