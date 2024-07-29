@@ -11,13 +11,13 @@ class DocenteController extends Controller
     public function index()
     {
         $docentes = Docente::with('programa')->get();
-        return view('docente.index', compact('docentes'));
+        return view('dashboard.docente.index', compact('docentes'));
     }
 
     public function create()
     {
         $programas = Programa::all();
-        return view('docente.create', compact('programas'));
+        return view('dashboard.docente.create', compact('programas'));
     }
 
     public function store(Request $request)
@@ -30,19 +30,19 @@ class DocenteController extends Controller
 
         Docente::create($request->all());
 
-        return redirect()->route('docentes.index')
+        return redirect()->route('docente.index')
                          ->with('success', 'Docente creado con éxito.');
     }
 
     public function show(Docente $docente)
     {
-        return view('docente.show', compact('docente'));
+        return view('dashboard.docente.show', compact('docente'));
     }
 
     public function edit(Docente $docente)
     {
         $programas = Programa::all();
-        return view('docente.edit', compact('docente', 'programas'));
+        return view('dashboard.docente.edit', compact('docente', 'programas'));
     }
 
     public function update(Request $request, Docente $docente)
@@ -55,7 +55,7 @@ class DocenteController extends Controller
 
         $docente->update($request->all());
 
-        return redirect()->route('docentes.index')
+        return redirect()->route('docente.index')
                          ->with('success', 'Docente actualizado con éxito.');
     }
 
@@ -63,7 +63,7 @@ class DocenteController extends Controller
     {
         $docente->delete();
 
-        return redirect()->route('docentes.index')
+        return redirect()->route('docente.index')
                          ->with('success', 'Docente eliminado con éxito.');
     }
 }

@@ -11,13 +11,13 @@ class CaracteristicaController extends Controller
     public function index()
     {
         $caracteristicas = Caracteristica::with('factor')->get();
-        return view('caracteristica.index', compact('caracteristicas'));
+        return view('dashboard.caracteristica.index', compact('caracteristicas'));
     }
 
     public function create()
     {
         $factores = Factor::all();
-        return view('caracteristica.create', compact('factores'));
+        return view('dashboard.caracteristica.create', compact('factores'));
     }
 
     public function store(Request $request)
@@ -30,19 +30,19 @@ class CaracteristicaController extends Controller
 
         Caracteristica::create($request->all());
 
-        return redirect()->route('caracteristicas.index')
+        return redirect()->route('caracteristica.index')
                          ->with('success', 'Característica creada con éxito.');
     }
 
     public function show(Caracteristica $caracteristica)
     {
-        return view('caracteristica.show', compact('caracteristica'));
+        return view('dashboard.caracteristica.show', compact('caracteristica'));
     }
 
     public function edit(Caracteristica $caracteristica)
     {
         $factores = Factor::all();
-        return view('caracteristica.edit', compact('caracteristica', 'factores'));
+        return view('dashboard.caracteristica.edit', compact('caracteristica', 'factores'));
     }
 
     public function update(Request $request, Caracteristica $caracteristica)
@@ -55,7 +55,7 @@ class CaracteristicaController extends Controller
 
         $caracteristica->update($request->all());
 
-         return redirect()->route('caracteristicas.index')
+         return redirect()->route('caracteristica.index')
                           ->with('success', 'Característica actualizada con éxito.');
     }
 
@@ -63,7 +63,7 @@ class CaracteristicaController extends Controller
     {
         $caracteristica->delete();
 
-        return redirect()->route('caracteristicas.index')
+        return redirect()->route('caracteristica.index')
                          ->with('success', 'Característica eliminada con éxito.');
     }
 }

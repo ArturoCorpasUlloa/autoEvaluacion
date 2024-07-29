@@ -11,13 +11,13 @@ class AspectoController extends Controller
     public function index()
     {
         $aspectos = Aspecto::with('caracteristica')->get();
-        return view('aspecto.index', compact('aspectos'));
+        return view('dashboard.aspecto.index', compact('aspectos'));
     }
 
     public function create()
     {
         $caracteristicas = Caracteristica::all();
-        return view('aspecto.create', compact('caracteristicas'));
+        return view('dashboard.aspecto.create', compact('caracteristicas'));
     }
 
     public function store(Request $request)
@@ -30,19 +30,19 @@ class AspectoController extends Controller
 
         Aspecto::create($request->all());
 
-        return redirect()->route('aspectos.index')
+        return redirect()->route('aspecto.index')
                          ->with('success', 'Aspecto creado con éxito.');
     }
 
     public function show(Aspecto $aspecto)
     {
-        return view('aspecto.show', compact('aspecto'));
+        return view('dashboard.aspecto.show', compact('aspecto'));
     }
 
     public function edit(Aspecto $aspecto)
     {
         $caracteristicas = Caracteristica::all();
-        return view('aspecto.edit', compact('aspecto', 'caracteristicas'));
+        return view('dashboard.aspecto.edit', compact('aspecto', 'caracteristicas'));
     }
 
     public function update(Request $request, Aspecto $aspecto)
@@ -55,7 +55,7 @@ class AspectoController extends Controller
 
         $aspecto->update($request->all());
 
-        return redirect()->route('aspectos.index')
+        return redirect()->route('aspecto.index')
                          ->with('success', 'Aspecto actualizado con éxito.');
     }
 
@@ -63,7 +63,7 @@ class AspectoController extends Controller
     {
         $aspecto->delete();
 
-        return redirect()->route('aspectos.index')
+        return redirect()->route('aspecto.index')
                          ->with('success', 'Aspecto eliminado con éxito.');
     }
 }

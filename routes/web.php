@@ -1,11 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-
-use App\Http\Controllers\UserController;
+//controladores creados para el aplicativo:
 use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\FactorController;
 use App\Http\Controllers\CaracteristicaController;
@@ -16,36 +13,28 @@ use App\Http\Controllers\OrigenInstitucionalController;
 use App\Http\Controllers\EvidenciaController;
 use App\Http\Controllers\DocenteController;
 
-Route::resource('users', UserController::class);
-Route::resource('programas', ProgramaController::class);
-Route::resource('factores', FactorController::class);
-Route::resource('caracteristicas', CaracteristicaController::class);
-Route::resource('aspectos', AspectoController::class);
-Route::resource('modelos_evaluacion', ModeloEvaluacionController::class);
-Route::resource('modelos_aspectos', ModeloAspectoController::class);
-Route::resource('evidencias', EvidenciaController::class);
-Route::resource('docentes', DocenteController::class);
-Route::resource('origenes', OrigenInstitucionalController::class);
-
-
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    //Rutas Creadas para la aplicacion
+    Route::resource('dashboard/programa', ProgramaController::class);
+    Route::resource('dashboard/factor', FactorController::class);
+    Route::resource('dashboard/caracteristica', CaracteristicaController::class);
+    Route::resource('dashboard/aspecto', AspectoController::class);
+    Route::resource('dashboard/modelo_evaluacion', ModeloEvaluacionController::class);
+    Route::resource('dashboard/modelos_aspecto', ModeloAspectoController::class);
+    Route::resource('dashboard/evidencia', EvidenciaController::class);
+    Route::resource('dashboard/docente', DocenteController::class);
+    Route::resource('dashboard/origen', OrigenInstitucionalController::class);
 });
-
 
 require __DIR__.'/auth.php';

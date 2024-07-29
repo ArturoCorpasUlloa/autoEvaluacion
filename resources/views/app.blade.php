@@ -13,7 +13,7 @@
         <!-- Scripts -->
         @routes
         @viteReactRefresh
-        @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
@@ -26,11 +26,11 @@
                             <h1 class="text-white text-lg font-bold">Menú</h1>
                         </div>
                         <ul class="flex space-x-4">
-                            <li class="text-white"><a href="{{ route('programas.index') }}" class="hover:text-gray-300">Programas</a></li>
-                            <li class="text-white"><a href="{{ route('factores.index') }}" class="hover:text-gray-300">Factores</a></li>
-                            <li class="text-white"><a href="{{ route('aspectos.index') }}" class="hover:text-gray-300">Aspectos</a></li>
-                            <li class="text-white"><a href="{{ route('modelos_evaluacion.index') }}" class="hover:text-gray-300">Modelos de Evaluación</a></li>
-                            <li class="text-white"><a href="{{ route('caracteristicas.index') }}" class="hover:text-gray-300">Características</a></li>
+                            {{-- <li class="text-white"><a href="{{ route('programas.index') }}" class="hover:text-gray-300">Programas</a></li> --}}
+                            {{-- <li class="text-white"><a href="{{ route('factores.index') }}" class="hover:text-gray-300">Factores</a></li> --}}
+                            {{-- <li class="text-white"><a href="{{ route('aspectos.index') }}" class="hover:text-gray-300">Aspectos</a></li> --}}
+                            {{-- <li class="text-white"><a href="{{ route('modelos_evaluacion.index') }}" class="hover:text-gray-300">Modelos de Evaluación</a></li> --}}
+                            {{-- <li class="text-white"><a href="{{ route('caracteristicas.index') }}" class="hover:text-gray-300">Características</a></li> --}}
                             <li class="text-white"><a href="{{ route('docentes.index') }}" class="hover:text-gray-300">Docentes</a></li>
                             <li class="text-white"><a href="{{ route('origenes.index') }}" class="hover:text-gray-300">Origen Institucional</a></li>
 
